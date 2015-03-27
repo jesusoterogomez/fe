@@ -162,6 +162,11 @@ h2 {
 	width: 100px;
 }
 
+.rooms_table .one_room .room_price:before{
+	/* Supports IE8+ as per http://caniuse.com/#feat=css-gencontent*/
+	content:"€";
+}
+
 .rooms_table .room_quantity {
 	text-align: center;
 	width: 150px;
