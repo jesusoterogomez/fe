@@ -148,6 +148,14 @@ h2 {
 	padding: 10px 5px;
 }
 
+.rooms_table th.sort{
+	background-color: #020202;
+	/*▼*/
+}
+.rooms_table th.sort:after{
+	content: '▲';
+}
+
 .rooms_table .room_name {
 	font-weight: bold;
 }

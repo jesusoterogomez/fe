@@ -2,7 +2,7 @@
 // Room Selection Summary
 var table = $(".rooms_table_form");
 var rooms = $(table).find('select[name^="room"]');
-var rows  = $(table).find('tbody .one_room');
+var rows  = $(table).find('tbody tr.one_room');
 var cols  = $(table).find('thead > tr > th');
 
 rooms.change(function (e) {
@@ -22,14 +22,17 @@ rooms.change(function (e) {
 cols.on('click', function (e) {
 	e.preventDefault();
 	var tbody = rows.parent();
-	var index = cols.index($(this)); // Index of Clicked Column
+	var index = cols.index($(this)); // Index of clicked column
+	var rowsArray = rows.toArray(); 
 
-	var colArray = rows.toArray(); // Rows of Clicked Column
+	$(rows).detach(); // Remove row collection
+	rowsArray.sort(tableSort(index)); 
 
-	$(rows).detach(); //remove row collection
-	colArray.sort(tableSort(index)); // apply sorting
-	
-	tbody.append(colArray); //append sorted row collection
+
+	$(cols).removeClass('sort');
+	$(this).addClass('sort');
+	// console.log(this);
+	tbody.append(rowsArray); // Append sorted row collection
 });
 
 function tableSort (index) {
@@ -37,12 +40,19 @@ function tableSort (index) {
 		var valA = $(a).find('td:eq('+index+')').html();
 		var	valB = $(b).find('td:eq('+index+')').html();
 
-		if (valA > valB){
-			return 1;
+		//Check whether to sort by number or string
+		if($.isNumeric(valA) && $.isNumeric(valB))
+		{	
+			return valA - valB;
 		}
-		if (valA < valB){
-			return -1;
+		else
+		{
+			return valA > valB ? 1 : -1;
+			// if (valA > valB){return  1;}
+			// else if (valA < valB){return -1;}
+			// return 0;	
 		}
 		return 0;
+
 	}
 }
