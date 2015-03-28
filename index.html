@@ -73,9 +73,9 @@
 				<table class="rooms_table" cellspacing="0" cellpadding="0">
 					<thead>
 						<tr>
-							<th class="room_name">Room Name</th>
-							<th class="room_occupancy">Occupancy</th>
-							<th class="room_price">Price per Room</th>
+							<th class="sort room_name">Room Name</th>
+							<th class="sort room_occupancy">Occupancy</th>
+							<th class="sort room_price">Price per Room</th>
 							<th class="room_quantity">No. Rooms</th>
 						</tr>
 					</thead>
@@ -248,12 +248,13 @@
 
 					</tbody>
 					<tfoot>
-						<tr class="reservation_summary">
-							<td colspan='2'>Summary</td>
-							<td class="reservation_total">0</td>
-							<td class="reservation_quantity">0</td>
+						<tr class="rooms_summary">
+							<td colspan="2" class="summary_label">Subtotal</td>
+							<td class="summary_subtotal">--</td>
+							<td class="summary_quantity">--</td>
 						</tr>
 						<tr>
+							
 							<td colspan="4">
 								<button class="button" type="submit">Book Now</button>
 							</td>

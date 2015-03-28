@@ -1,5 +1,5 @@
 header, nav, section, article, aside, footer {
-   display: block;
+	display: block;
 }
 
 html {
@@ -136,7 +136,7 @@ h2 {
 	padding: 5px;
 }
 
-.rooms_table tr:nth-child(2n) {
+.rooms_table tbody tr:nth-child(2n) {
 	background: #e6edf6;
 }
 
@@ -148,12 +148,25 @@ h2 {
 	padding: 10px 5px;
 }
 
-.rooms_table th.sort{
-	background-color: #020202;
-	/*▼*/
+.rooms_table th.sort {
+	cursor: pointer;
 }
-.rooms_table th.sort:after{
-	content: '▲';
+
+.rooms_table th.sort:hover {
+	background-color: #003570;
+}
+
+.rooms_table th.sort:after {
+	content: ' ↕';
+	font-size: 0.8em;
+}
+
+.rooms_table th.sort.asc:after {
+	content: ' ▲';
+}
+
+.rooms_table th.sort.desc:after {
+	content: ' ▼';
 }
 
 .rooms_table .room_name {
@@ -167,12 +180,11 @@ h2 {
 
 .rooms_table .room_price {
 	text-align: right;
-	width: 100px;
+	width: 120px;
 }
 
-.rooms_table .one_room .room_price:before{
-	/* Supports IE8+ as per http://caniuse.com/#feat=css-gencontent*/
-	content:"€";
+.rooms_table .one_room .room_price:before {
+	content:"€"; /* Append euro sign to allow numeric sorting on column */
 }
 
 .rooms_table .room_quantity {
@@ -185,7 +197,13 @@ h2 {
 	text-align: right;
 }
 
+.rooms_table tfoot .rooms_summary td {
+	font-weight: bold;
+}
 
+.rooms_table tfoot .summary_quantity {
+	text-align: center;
+}
 
 /* footer */
 
