@@ -1,3 +1,5 @@
+'use strict';
+
 var currency = '&euro;';
 
 // Room Table Selectors
@@ -61,4 +63,49 @@ cols.click(function (e) {
     tbody.append(rowsArray.reverse()); // append reversed rows
     $(this).addClass(desc).removeClass(asc);
   }
+});
+
+
+
+// Reviews
+var firstPage     = 1;
+var pageItems     = 5;
+var reviewList    = $('.reviews_list');
+var reviews       = $(reviewList).find('.one_review');
+var pageCount     = Math.ceil(reviews.length / pageItems);
+var pagination    = $('.reviews_pagination');
+var pagerButton   = '.pager_button';
+var pagerTemplate = '<a href="#" class="pager_button"></>';
+
+function createPaging(pageCount) {
+  var i;
+  for (i = 0; i < pageCount; i++) {
+    pagination.append($(pagerTemplate).html(i + 1));
+  }
+}
+
+function getPage(pageNumber) {
+  reviews.hide();
+  $(pagination).find(pagerButton).eq(pageNumber - 1).addClass('active');
+  $.each(reviews, function (n) {
+    if (n >= (pageNumber - 1) * pageItems && n < pageNumber * pageItems) {
+      $(this).show();
+    }
+  });
+}
+
+function paginateReviews(pageNumber, pageCount) {
+  if (pageCount > 1) {
+    createPaging(pageCount); // start paging at 1
+  }
+  getPage(pageNumber);
+}
+
+paginateReviews(firstPage, pageCount); // Paginate Reviews
+
+/* Change pages event */
+pagination.on('click', pagerButton, function (event) {
+  event.preventDefault();
+  $('.pagination a').removeClass('active');
+  getPage($(this).html());
 });

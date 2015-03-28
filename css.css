@@ -115,6 +115,18 @@ h2 {
 	margin-top: 5px;
 }
 
+.reviews_pagination a{
+	padding:10px 12px;
+	border-radius: 4px;
+	margin:5px;
+	background: #e6edf6;
+	text-decoration: none;
+	color: #003580;
+}
+.reviews_pagination a.active{
+	background-color: #003580;
+	color:#FFF;
+}
 /* rooms table */
 
 .button {
