@@ -11,8 +11,8 @@ var cols     = $(table).find('thead > tr > th.sort');
 var subtotal = $(table).find('.summary_subtotal');
 var quantity = $(table).find('.summary_quantity');
 
-// Data Objects
-var price = {label:'price'};
+// variables
+var price = 'price';
 var sort  = {asc : 'asc', desc : 'desc'}; 
 
 /* Event on room quantity change */
@@ -22,7 +22,7 @@ $(table).on('change', roomQty, function (e) {
 	var total = 0;
 
 	$.each(rows.find(roomQty), function(index, val) {
-		total = total + parseInt(val.value) * $(val).data(price.label);
+		total = total + parseInt(val.value) * $(val).data(price);
 		count = count + parseInt(val.value);
 	});
 
