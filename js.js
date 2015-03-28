@@ -106,6 +106,6 @@ paginateReviews(firstPage, pageCount); // Paginate Reviews
 /* Change pages event */
 pagination.on('click', pagerButton, function (event) {
   event.preventDefault();
-  $('.pagination a').removeClass('active');
+  $(pagination).find(pagerButton).removeClass('active');
   getPage($(this).html());
 });
