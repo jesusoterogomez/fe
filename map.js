@@ -5,7 +5,6 @@ var placesCount = 6;
 var mapCanvas    = 'map_canvas';
 var nearbyPlaces = '.nearby_places_list';
 var placeClass   = 'one_place';
-var placeTypes   = ['store', 'food'];
 
 function initialize() {
   var paris = new google.maps.LatLng(48.8665735, 2.3551065);
@@ -23,7 +22,6 @@ function initialize() {
   request = {
     location: paris,
     radius: 500,
-    types: placeTypes
   };
 
   placesList = $(nearbyPlaces)[0];
