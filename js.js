@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: 
+// Pagination nomenclature;
 var currency = '&euro;';
 
 // Room Table Selectors
@@ -11,13 +13,13 @@ var quantity  = $(table).find('.summary_quantity');
 var roomQty   = $(rows).find('select[name^="room"]');
 var roomPrice = $(rows).find('.room_price');
 
-// sort classes
-var asc  = 'asc';
-var desc = 'desc';
+// CSS Classes referenced in js
+var classes = { asc: 'asc', desc: 'desc', active: 'active'};
 
 /* Room Quantity Change */
-roomQty.change(function (e) {
-  e.preventDefault();
+roomQty.change(function (event) {
+  event.preventDefault();
+
   var count = 0;
   var total = 0;
 
@@ -45,8 +47,9 @@ function tableSort(index) {
 }
 
 /* Table Header Click */
-cols.click(function (e) {
-  e.preventDefault();
+cols.click(function (event) {
+  event.preventDefault();
+
   var tbody = rows.parent();
   var index = cols.index($(this)); // Index of clicked column
   var rowsArray = rows.toArray();
@@ -55,39 +58,40 @@ cols.click(function (e) {
 
   $(rows).detach(); // Remove row collection
 
-  if (!$(this).hasClass(asc)) {
+  if (!$(this).hasClass(classes.asc)) {
     tbody.append(rowsArray); // append sorted rows 
-    $(cols).removeClass(asc + ' ' + desc); // reset other columns' sorting
-    $(this).addClass(asc).removeClass(desc);
+    $(cols).removeClass(classes.asc + ' ' + classes.desc); // reset other columns' sorting
+    $(this).addClass(classes.asc).removeClass(classes.desc);
   } else {
     tbody.append(rowsArray.reverse()); // append reversed rows
-    $(this).addClass(desc).removeClass(asc);
+    $(this).addClass(classes.desc).removeClass(classes.asc);
   }
 });
-
-
 
 // Reviews
 var firstPage     = 1;
 var pageItems     = 5;
 var reviewList    = $('.reviews_list');
-var reviews       = $(reviewList).find('.one_review');
-var pageCount     = Math.ceil(reviews.length / pageItems);
-var pagination    = $('.reviews_pagination');
+var reviews       = '.one_review';
+var pageCount     = Math.ceil($(reviews).length / pageItems);
+var pagination    = '.reviews_pagination';
 var pagerButton   = '.pager_button';
-var pagerTemplate = '<a href="#" class="pager_button"></>';
+var reviewScore   = '.review_score';
+var reviewSort    = '.reviews_sort';
+var pagerTemplate = '<a href="#" class="pager_button"></a>';
 
-function createPaging(pageCount) {
+function createPagingButtons(pageCount) {
   var i;
   for (i = 0; i < pageCount; i++) {
-    pagination.append($(pagerTemplate).html(i + 1));
+    $(pagination).append($(pagerTemplate).html(i + 1));
   }
 }
 
 function getPage(pageNumber) {
-  reviews.hide();
-  $(pagination).find(pagerButton).eq(pageNumber - 1).addClass('active');
-  $.each(reviews, function (n) {
+  $(reviews).hide();
+  $(pagination).find(pagerButton).removeClass(classes.active);
+  $(pagination).find(pagerButton).eq(pageNumber - 1).addClass(classes.active);
+  $.each($(reviews), function (n) {
     if (n >= (pageNumber - 1) * pageItems && n < pageNumber * pageItems) {
       $(this).show();
     }
@@ -96,16 +100,66 @@ function getPage(pageNumber) {
 
 function paginateReviews(pageNumber, pageCount) {
   if (pageCount > 1) {
-    createPaging(pageCount); // start paging at 1
+
+    createPagingButtons(pageCount); // start paging at 1
   }
   getPage(pageNumber);
 }
 
+function sortReviews(a, b) {
+  var valA = $(a).find(reviewScore).html();
+  var valB = $(b).find(reviewScore).html();
+  return valA - valB;
+}
+
+$(reviewSort).change(function (event) {
+  event.preventDefault();
+  console.log('test');
+  // Create an array 
+  var reviewsArray = $(reviews).toArray();
+  reviewsArray.sort(sortReviews);
+  $(reviews).show().detach();
+
+  if ($(this).val() === classes.asc) {
+    reviewList.append(reviewsArray);
+  } else {
+    reviewList.append(reviewsArray.reverse());
+  }
+  getPage(firstPage);
+});
+
 paginateReviews(firstPage, pageCount); // Paginate Reviews
 
 /* Change pages event */
-pagination.on('click', pagerButton, function (event) {
+$(pagination).on('click', pagerButton, function (event) {
   event.preventDefault();
-  $(pagination).find(pagerButton).removeClass('active');
   getPage($(this).html());
 });
+
+////////////////////
+// Similar Hotels //
+////////////////////
+
+var json = 'similar-hotels.json';
+var img_dir = 'img/';
+var star = '★';
+
+
+// String Repeating function - Inspired by http://stackoverflow.com/questions/202605/repeat-string-javascript 
+function repeat(num) {
+  return [](+num).join(this);
+}
+
+$.getJSON(json, function (data) {
+  var items = [];
+  $.each(data, function (key,hotel) {
+    items.push('<li class="similar_hotel">' +
+      '<h3 class="hotel_name">' + hotel.name + '</h3>' +
+      '<img class="hotel_thumb" src="' + img_dir + hotel.thumb + '"/>' +
+      '<p class="rating stars">' + star.repeat(hotel.rating) + '</p>' +
+      '<address class="hotel_address">' + hotel.address + '</address>' +
+      '</li>');
+  });
+  $('.similar_hotels_list').append(items.join(''));
+});
+

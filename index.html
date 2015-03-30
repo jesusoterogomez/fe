@@ -81,7 +81,11 @@
 					</thead>
 					<tbody>
 						<tr class="one_room">
-							<td class="room_name">Basic 2 Bed</td>
+							<td class="room_name">Basic 2 Bed
+								<span class="room_info">
+									<span class="info_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit voluptatem deserunt, mollitia, sint atque corporis!</span>
+								</span>
+							</td>
 							<td class="room_occupancy">2</td>
 							<td class="room_price">88.99</td>
 							<td class="room_quantity">
@@ -96,7 +100,11 @@
 							</td>
 						</tr>
 						<tr class="one_room">
-							<td class="room_name">Basic Family Room</td>
+							<td class="room_name">Basic Family Room
+								<span class="room_info">
+									<span class="info_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit voluptatem deserunt, mollitia, sint atque corporis!</span>
+								</span>
+							</td>
 							<td class="room_occupancy">4</td>
 							<td class="room_price">98.99</td>
 							<td class="room_quantity">
@@ -111,7 +119,11 @@
 							</td>
 						</tr>
 						<tr class="one_room">
-							<td class="room_name">Deluxe 2 Bed</td>
+							<td class="room_name">Deluxe 2 Bed
+								<span class="room_info">
+									<span class="info_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit voluptatem deserunt, mollitia, sint atque corporis!</span>
+								</span>
+							</td>
 							<td class="room_occupancy">2</td>
 							<td class="room_price">109.99</td>
 							<td class="room_quantity">
@@ -126,7 +138,11 @@
 							</td>
 						</tr>
 						<tr class="one_room">
-							<td class="room_name">Deluxe Family Room</td>
+							<td class="room_name">Deluxe Family Room
+								<span class="room_info">
+									<span class="info_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit voluptatem deserunt, mollitia, sint atque corporis!</span>
+								</span>
+							</td>
 							<td class="room_occupancy">7</td>
 							<td class="room_price">112.99</td>
 							<td class="room_quantity">
@@ -266,6 +282,12 @@
 
 		<section class="reviews">
 			<h2>Reviews</h2>
+			<label for="reviews_sort">Sort by rating: </label>
+			<select class="reviews_sort" name="reviews_sort" >
+				<option disabled selected> -- select an option -- </option>
+				<option value="desc">High to Low</option>
+				<option value="asc">Low to High</option>
+			</select>
 			<ul class="reviews_list">
 				<li class="one_review">
 					<strong class="review_score">5</strong>
@@ -469,17 +491,21 @@
 						non convallis enim porttitor. Nulla ut fermentum sem. Aliquam tincidunt, dui malesuada venenatis pulvinar, justo tellus tempus nulla, sit amet pretium orci metus sed purus. Phasellus lobortis cursus lacus vitae volutpat. Nulla at velit ut orci varius placerat. Aenean est elit, adipiscing et nunc varius, accumsan tempus magna. Donec consectetur orci nec mattis hendrerit.
 						<cite>Badger</cite>
 					</blockquote>
-				</li>																																																																																																																																																																																																																				
-			</ul>
-			<ul class="reviews_pagination">	
-			</ul>
-		</section>
+				</ul>
+				<div class="reviews_pagination"><!-- dynamic pagination --></div>
+			</section>
 
-		<section class="footer">
-			&copy;2014 Booking.com
-		</section>
-		
-		<script src="jquery-1.11.1.min.js"></script>
-		<script src="js.js"></script>
-	</body>
-	</html>
+			<section class="similar_hotels">
+				<h2>Similar Hotels</h2>
+				<ul class="similar_hotels_list">
+					<!-- dynamic list from ajax json call -->
+				</ul>
+			</section>
+			<section class="footer">
+				&copy;2014 Booking.com
+			</section>
+
+			<script src="jquery-1.11.1.min.js"></script>
+			<script src="js.js"></script>
+		</body>
+		</html>

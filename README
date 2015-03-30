@@ -24,7 +24,7 @@ Tasks
 
 1 *  Improve the room table. Allow the user to sort the room table by occupancy
  	or price, display a total when the user selects a quantity, display
- 	additional information about rooms. <-todo
+ 	additional information about rooms. 
 
 4 *  Create a photo carousel using the large photos linked from the thumbnails
 	currently in the page. Include an automatic	slideshow mode, add prev/next

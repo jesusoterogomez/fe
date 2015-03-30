@@ -1,0 +1,30 @@
+[
+	{
+		"name":"Hotel Le Fancy",
+		"address":"72b Rue de Awesome, 75001, Paris, France",
+		"thumb":"1_thumb.jpg",
+		"rating" : 5,
+		"description" : "Lorem ipsum dolor sit amet."
+	},
+	{
+		"name":"Hotel Deluxe",
+		"address":"72b Rue de Awesome, 75001, Paris, France",
+		"thumb":"2_thumb.jpg",
+		"rating" : 5,
+		"description" : "Lorem ipsum dolor sit amet."
+	},
+	{
+		"name":"Hotel Amazing",
+		"address":"72b Rue de Awesome, 75001, Paris, France",
+		"thumb":"3_thumb.jpg",
+		"rating" : 4,
+		"description" : "Lorem ipsum dolor sit amet."
+	},
+	{
+		"name":"Hotel Bombastic",
+		"address":"72b Rue de Awesome, 75001, Paris, France",
+		"thumb":"4_thumb.jpg",
+		"rating" : 5,
+		"description" : "Lorem ipsum dolor sit amet."
+	}
+]
