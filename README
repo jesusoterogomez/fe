@@ -16,7 +16,7 @@ Browser support should include IE8+, Chrome, Safari, FF.
 Tasks
 ========================================
 
-3 *  Imagine there is a JSON feed with hotels similar to the current one.
+4 *  Imagine there is a JSON feed with hotels similar to the current one.
  	Design JSON format and use the feed to display similar hotels on the page.
 
 2 *  Split the reviews into blocks of 5 and create pagination. Allow the user
@@ -26,7 +26,7 @@ Tasks
  	or price, display a total when the user selects a quantity, display
  	additional information about rooms. 
 
-4 *  Create a photo carousel using the large photos linked from the thumbnails
+3 *  Create a photo carousel using the large photos linked from the thumbnails
 	currently in the page. Include an automatic	slideshow mode, add prev/next
 	buttons to manually controll the carousel, add a layer that shows the
 	contents of the images alt text.
@@ -35,3 +35,39 @@ Tasks
 
 5 *  Add an interactive location block to the page. It should contain a map and
  	some nearby landmarks.
+
+
+-- 
+#Priorization Criteria & Reasoning 
+
+I prioritized the tasks starting with the room table, because it was a feature that
+was already in place, but it didn't provide a good user experience due to the lack
+of feedback after changing any room quantities. Which made the feature feel "broken".
+
+Then I considered splitting the reviews in pages as the second most important task
+because the ease of navigability/usability of the page was severely hindered by the number of
+reviews that the page has.
+
+After that, the Photo Carousel would be the next task I consider as high priority,
+because the current implementation has the photos visible, but a click on each one
+navigates away from the page, breaking the navigation. It's also a good way to showcase
+a series of images and the average user is already accustomed to the use of sliders/carousels.
+
+I consider the next tasks as medium priority, as they provide an enhancement to the product
+but they aren't critical tasks as they're not a half-baked or broken implementation.
+
+Of those three tasks, I assigned the highest priority to creating a list of similar hotels from 
+a JSON Feed. since the suggestion of another items, makes the user most likely to spend more time
+browsing on the site and take further action (conversion).
+
+Then, adding a location block on the page, with nearby places would also increase the conversion
+rate because the service would give an added value on top of what's already offering, showing the
+user additional motivation to take action.
+
+Of all the tasks, I consider improving the facilities block of low importance, since the actual
+implementation is easily consumable and it shows at a glance, which facilities are offered in a
+specific hotel. However, this could easily be improved implementing more visual aid such as a 
+representative icon for each type of facility. Which could in turn, give the possibility to include
+such icons in lists (like the similar hotel list) when the users get accustomed to what each of them mean. 
+
+
