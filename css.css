@@ -116,6 +116,8 @@ h2 {
 	margin-top: 5px;
 }
 
+/* Review pagination */
+
 .reviews_pagination {
 	padding:0;
 }
@@ -280,9 +282,7 @@ I only added a couple of these items to the list as a demo.
 	text-align: center;
 }
 
-.similar_hotels {
-
-}
+/* similar hotels */
 
 .similar_hotels_list {
 	list-style: none;
@@ -290,21 +290,25 @@ I only added a couple of these items to the list as a demo.
 	position: relative;
 	padding: 0;
 }
+
 .similar_hotels_list .similar_hotel {
 	width: 25%;
 	display: inline-block;
 }
+
 .similar_hotels_list .similar_hotel a {
 	text-decoration: none;
 }
-.similar_hotels_list .hotel_name{
-		color: #0896ff;
+
+.similar_hotels_list .hotel_name {
+	color: #0896ff;
 }
-.similar_hotel .stars{
-	padding: 0;
+
+.similar_hotel .stars {
 	margin: 0;
 	font-size: 18px;
 }
+
 /* footer */
 
 .footer {
@@ -344,20 +348,21 @@ I only added a couple of these items to the list as a demo.
 	color: #0896ff;
 }
 
-
 /* Map Canvas */
 
-.hotel-map {
+.hotel_map {
 	font-size: 0; /*Fix inline-block percentage fit on parent's width*/
 }
 
-#map-canvas {
+#map_canvas {
 	width: 65%;
 	height: 282px;
 	font-size: 12px;
 	display: inline-block;
 	vertical-align: top;
 }
+
+/* Nearby Places list */
 
 .nearby_places {
 	width:35%;
@@ -375,9 +380,10 @@ I only added a couple of these items to the list as a demo.
 
 .nearby_places .one_place {
 	margin: 5px;
-	border-bottom: 1px solid #ddd;
 	padding:5px;
+	border-bottom: 1px solid #ddd;
 }
+
 .nearby_places .one_place:last-child {
 	border-bottom: none;
 }
