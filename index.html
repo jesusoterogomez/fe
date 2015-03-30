@@ -51,6 +51,16 @@
 			<p>Hotel du Louvre is situated 2 minutes from Palais Royal Metro Station, providing direct access to the Champs Elysees and the Place de la Bastille. Public parking is available nearby.</p>
 		</section>
 		
+		<section class="hotel-map">
+			<h2>Map & Nearby Locations</h2>
+
+			<div id="map-canvas"></div>
+			<div class="nearby_places">
+				<ul class="nearby_places_list"></ul>
+				<!-- <button id="more">More results</button> -->
+			</div>
+		</section>
+
 		<section class="facilities">
 			<h2>Facilities</h2>
 			<ul>
@@ -501,11 +511,18 @@
 					<!-- dynamic list from ajax json call -->
 				</ul>
 			</section>
+			
+
+
+
+
 			<section class="footer">
 				&copy;2014 Booking.com
 			</section>
 
 			<script src="jquery-1.11.1.min.js"></script>
 			<script src="js.js"></script>
+			<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+			<script src="map.js"></script>
 		</body>
 		</html>

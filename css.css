@@ -294,13 +294,16 @@ I only added a couple of these items to the list as a demo.
 	width: 25%;
 	display: inline-block;
 }
+.similar_hotels_list .similar_hotel a {
+	text-decoration: none;
+}
 .similar_hotels_list .hotel_name{
 		color: #0896ff;
 }
-.similar_hotel .rating{
+.similar_hotel .stars{
 	padding: 0;
 	margin: 0;
-	font-size: 16px;
+	font-size: 18px;
 }
 /* footer */
 
@@ -339,4 +342,59 @@ I only added a couple of these items to the list as a demo.
 .facilities li:before {
 	content: '✔ ';
 	color: #0896ff;
+}
+
+
+/* Map Canvas */
+
+.hotel-map {
+	font-size: 0; /*Fix inline-block percentage fit on parent's width*/
+}
+
+#map-canvas {
+	width: 65%;
+	height: 282px;
+	font-size: 12px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.nearby_places {
+	width:35%;
+	font-size: 12px;
+	display: inline-block;
+}
+
+.nearby_places_list {
+	list-style: none;
+	vertical-align: top;
+	margin: 0;
+	padding: 0;
+	border:1px solid #ddd;
+}
+
+.nearby_places .one_place {
+	margin: 5px;
+	border-bottom: 1px solid #ddd;
+	padding:5px;
+}
+.nearby_places .one_place:last-child {
+	border-bottom: none;
+}
+
+.nearby_places .one_place img {
+	float:left;
+	width: 26px;
+	height: 26px;
+	margin-right: 5px;
+}
+
+.nearby_places .one_place address{
+	margin: 0;
+}
+
+.nearby_places .one_place h4 {
+	margin: 0;
+	font-size: 14px;
+	color:#0896ff;
 }

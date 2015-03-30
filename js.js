@@ -1,7 +1,5 @@
 'use strict';
 
-// TODO: 
-// Pagination nomenclature;
 var currency = '&euro;';
 
 // Room Table Selectors
@@ -23,6 +21,7 @@ roomQty.change(function (event) {
   var count = 0;
   var total = 0;
 
+  // Iterate over each row calculating the subtotals.
   $.each(roomQty, function (index, val) {
     total += parseInt(val.value, 10) * roomPrice.eq(index).html();
     count += parseInt(val.value, 10); // radix = 10 for decimal values - http://jslinterrors.com/missing-radix-parameter
@@ -68,7 +67,12 @@ cols.click(function (event) {
   }
 });
 
-// Reviews
+
+/////////////
+// Reviews //
+/////////////
+
+// variables 
 var firstPage     = 1;
 var pageItems     = 5;
 var reviewList    = $('.reviews_list');
@@ -80,13 +84,15 @@ var reviewScore   = '.review_score';
 var reviewSort    = '.reviews_sort';
 var pagerTemplate = '<a href="#" class="pager_button"></a>';
 
+// Create the pagination buttons according to button template.
 function createPagingButtons(pageCount) {
-  var i;
+  var i; // avoid var declaration on each iteration
   for (i = 0; i < pageCount; i++) {
     $(pagination).append($(pagerTemplate).html(i + 1));
   }
 }
 
+// Request page by number programatically.
 function getPage(pageNumber) {
   $(reviews).hide();
   $(pagination).find(pagerButton).removeClass(classes.active);
@@ -98,37 +104,42 @@ function getPage(pageNumber) {
   });
 }
 
+// Wrapper function - checks if pagination is needed depending on list/page size.
 function paginateReviews(pageNumber, pageCount) {
   if (pageCount > 1) {
-
     createPagingButtons(pageCount); // start paging at 1
   }
   getPage(pageNumber);
 }
 
+// Review sorting function
 function sortReviews(a, b) {
   var valA = $(a).find(reviewScore).html();
   var valB = $(b).find(reviewScore).html();
   return valA - valB;
 }
 
+paginateReviews(firstPage, pageCount); // Initial Review Pagination
+
+/* Sort Reviews Dropdown Change */
 $(reviewSort).change(function (event) {
   event.preventDefault();
-  console.log('test');
-  // Create an array 
+  // Create an array from the reviews and sort it numerically by rating
   var reviewsArray = $(reviews).toArray();
   reviewsArray.sort(sortReviews);
+  // reset the reviews' visibility and detach the rows from the list.
   $(reviews).show().detach();
 
+  // Check whether to sort asc or desc. 
   if ($(this).val() === classes.asc) {
     reviewList.append(reviewsArray);
   } else {
     reviewList.append(reviewsArray.reverse());
   }
+  // Request/navigate to the first page of the reviews after sorting.
   getPage(firstPage);
 });
 
-paginateReviews(firstPage, pageCount); // Paginate Reviews
 
 /* Change pages event */
 $(pagination).on('click', pagerButton, function (event) {
@@ -140,26 +151,37 @@ $(pagination).on('click', pagerButton, function (event) {
 // Similar Hotels //
 ////////////////////
 
+// Variables
 var json = 'similar-hotels.json';
 var img_dir = 'img/';
 var star = '★';
 
+// Selectors
+var similarHotelList = '.similar_hotels_list';
+
+// CSS Classes
+var similarHotel = 'similar_hotel';
+var hotelName    = 'hotel_name';
+var hotelAddress = 'hotel_address';
+var hotelThumb   = 'hotel_thumb';
+var ratingStars  = 'stars';
 
 // String Repeating function - Inspired by http://stackoverflow.com/questions/202605/repeat-string-javascript 
 function repeat(num) {
   return [](+num).join(this);
 }
 
+// Build a list of similar hotels from an ajax-loaded json.
 $.getJSON(json, function (data) {
-  var items = [];
-  $.each(data, function (key,hotel) {
-    items.push('<li class="similar_hotel">' +
-      '<h3 class="hotel_name">' + hotel.name + '</h3>' +
-      '<img class="hotel_thumb" src="' + img_dir + hotel.thumb + '"/>' +
-      '<p class="rating stars">' + star.repeat(hotel.rating) + '</p>' +
-      '<address class="hotel_address">' + hotel.address + '</address>' +
-      '</li>');
+  var hotels = [];
+  $.each(data, function (index, hotel) {
+    // For each hotel in the json file. fill an HTML template.
+    hotels.push('<li class="' + similarHotel + '"><a href="#" target="_blank">' +
+      '<h3 class="' + hotelName + '">' + hotel.name + '</h3>' +
+      '<img class="' + hotelThumb + '" src="' + img_dir + hotel.thumb + '"/>' +
+      '<p class="' + ratingStars + '">' + star.repeat(hotel.rating) + '</p>' +
+      '<address class="' + hotelAddress + '">' + hotel.address + '</address></a></li>');
   });
-  $('.similar_hotels_list').append(items.join(''));
+  // Append the combined Array of hotels to the list. 
+  $(similarHotelList).append(hotels.join(''));
 });
-
